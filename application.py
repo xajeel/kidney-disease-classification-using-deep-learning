@@ -6,7 +6,7 @@ from PIL import Image
 import os
 
 # Load the saved model
-model = load_model(r'C:\Users\sajeel\Desktop\Data Science\Deep Learning 01\trained_model\model.h5')
+model = load_model(r'trained_model\model.h5')
 
 # Image Preprocessing 
 def predict(image_file):
@@ -14,7 +14,7 @@ def predict(image_file):
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     prediction = model.predict(img_array)
-    return prediction
+    return np.argmax(prediction, axis=1)[0]
 
 
 # Streamlit App 
